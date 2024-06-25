@@ -1,9 +1,9 @@
 package campus.tech.kakao.contacts
 
 import android.app.DatePickerDialog
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         val nameEditText = findViewById<EditText>(R.id.nameEditText)
         val phoneEditText = findViewById<EditText>(R.id.phoneEditText)
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
-        val birthEditText = findViewById<EditText>(R.id.birthEditText)
+        val birthEditText = findViewById<TextView>(R.id.birthTextView)
         val memoEditText = findViewById<EditText>(R.id.memoEditText)
         val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
         val moreTextView = findViewById<TextView>(R.id.moreTextView)
@@ -26,13 +26,7 @@ class MainActivity : AppCompatActivity() {
         val maleRadioButton = findViewById<RadioButton>(R.id.maleRadioButton)
 
         moreTextView.setOnClickListener {
-            if (moreLayout.visibility == LinearLayout.GONE) {
-                moreLayout.visibility = LinearLayout.VISIBLE
-                moreTextView.text = "" // 수정된 부분: 더보기 텍스트를 지웁니다.
-            } else {
-                moreLayout.visibility = LinearLayout.GONE
-                moreTextView.text = "더보기"
-            }
+            toggleMore()
         }
 
         birthEditText.setOnClickListener {
@@ -78,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 selectedDate.set(year, month, dayOfMonth)
                 val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
                 val formattedDate = sdf.format(selectedDate.time)
-                findViewById<EditText>(R.id.birthEditText).setText(formattedDate)
+                findViewById<EditText>(R.id.birthTextView).setText(formattedDate)
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -88,14 +82,27 @@ class MainActivity : AppCompatActivity() {
         datePicker.show()
     }
 
+    private fun toggleMore() {
+        val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
+        val moreTextView = findViewById<TextView>(R.id.moreTextView)
+
+        if (moreLayout.visibility == LinearLayout.GONE) {
+            moreLayout.visibility = LinearLayout.VISIBLE
+            moreTextView.visibility = TextView.GONE
+        } else {
+            moreLayout.visibility = LinearLayout.GONE
+            moreTextView.visibility = TextView.VISIBLE
+        }
+    }
+
     private fun clearFields() {
         findViewById<EditText>(R.id.nameEditText).text.clear()
         findViewById<EditText>(R.id.phoneEditText).text.clear()
         findViewById<EditText>(R.id.emailEditText).text.clear()
-        findViewById<EditText>(R.id.birthEditText).text.clear()
+        findViewById<EditText>(R.id.birthTextView).text.clear()
         findViewById<EditText>(R.id.memoEditText).text.clear()
         findViewById<RadioGroup>(R.id.genderRadioGroup).clearCheck()
         findViewById<LinearLayout>(R.id.moreLayout).visibility = LinearLayout.GONE
-        findViewById<TextView>(R.id.moreTextView).text = "더보기"
+        findViewById<TextView>(R.id.moreTextView).visibility = TextView.VISIBLE
     }
 }
