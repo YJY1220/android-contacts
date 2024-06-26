@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
-            clearFields()
-            Toast.makeText(this, "취소 되었습니다", Toast.LENGTH_SHORT).show()
+            //clearFields()
+            Toast.makeText(this, "취소되었습니다", Toast.LENGTH_SHORT).show()
         }
 
         saveButton.setOnClickListener {
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
 
             // 여기에 저장 로직 추가
 
-            Toast.makeText(this, "저장이 완료 되었습니다", Toast.LENGTH_SHORT).show()
-            clearFields()
+            Toast.makeText(this, "저장이 완료되었습니다", Toast.LENGTH_SHORT).show()
+            //clearFields()
         }
     }
 
@@ -72,13 +72,12 @@ class MainActivity : AppCompatActivity() {
                 selectedDate.set(year, month, dayOfMonth)
                 val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
                 val formattedDate = sdf.format(selectedDate.time)
-                findViewById<EditText>(R.id.birthTextView).setText(formattedDate)
+                findViewById<TextView>(R.id.birthTextView).text = formattedDate // 이 부분 수정
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
         )
-
         datePicker.show()
     }
 
@@ -95,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun clearFields() {
+    /*private fun clearFields() {
         findViewById<EditText>(R.id.nameEditText).text.clear()
         findViewById<EditText>(R.id.phoneEditText).text.clear()
         findViewById<EditText>(R.id.emailEditText).text.clear()
@@ -104,5 +103,5 @@ class MainActivity : AppCompatActivity() {
         findViewById<RadioGroup>(R.id.genderRadioGroup).clearCheck()
         findViewById<LinearLayout>(R.id.moreLayout).visibility = LinearLayout.GONE
         findViewById<TextView>(R.id.moreTextView).visibility = TextView.VISIBLE
-    }
+    }*/
 }
