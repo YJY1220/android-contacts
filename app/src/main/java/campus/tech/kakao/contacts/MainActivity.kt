@@ -1,65 +1,79 @@
 package campus.tech.kakao.contacts
 
-import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
-import java.text.SimpleDateFormat
+import androidx.appcompat.app.AppCompatActivity
+import android.app.DatePickerDialog //날짜 선택
+import java.text.SimpleDateFormat // 날짜 형식 지정
 import java.util.*
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val nameEditText = findViewById<EditText>(R.id.nameEditText)
-        val phoneEditText = findViewById<EditText>(R.id.phoneEditText)
-        val emailEditText = findViewById<EditText>(R.id.emailEditText)
-        val birthEditText = findViewById<TextView>(R.id.birthTextView)
-        val memoEditText = findViewById<EditText>(R.id.memoEditText)
+        val nameText = findViewById<EditText>(R.id.nameText)
+        val phoneText = findViewById<EditText>(R.id.phoneText)
+        val emailText = findViewById<EditText>(R.id.emailText)
+        val birthText = findViewById<TextView>(R.id.birthText)
+        val memoText = findViewById<EditText>(R.id.memoText)
         val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
-        val moreTextView = findViewById<TextView>(R.id.moreTextView)
+        val moreText = findViewById<TextView>(R.id.moreText)
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         val saveButton = findViewById<Button>(R.id.saveButton)
-        val genderRadioGroup = findViewById<RadioGroup>(R.id.genderRadioGroup)
-        val femaleRadioButton = findViewById<RadioButton>(R.id.femaleRadioButton)
-        val maleRadioButton = findViewById<RadioButton>(R.id.maleRadioButton)
+        val genderRadio = findViewById<RadioGroup>(R.id.genderRadio)
+        val femaleButton = findViewById<RadioButton>(R.id.femaleButton)
+        val maleButton = findViewById<RadioButton>(R.id.maleButton)
 
-        moreTextView.setOnClickListener {
+        //호출
+        moreText.setOnClickListener{
             toggleMore()
         }
 
-        birthEditText.setOnClickListener {
+        birthText.setOnClickListener{
             showDatePicker()
         }
 
         cancelButton.setOnClickListener {
-            //clearFields()
-            Toast.makeText(this, "취소되었습니다", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"취소되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
         saveButton.setOnClickListener {
-            val name = nameEditText.text.toString().trim()
-            val phone = phoneEditText.text.toString().trim()
-            val email = emailEditText.text.toString().trim()
-            val birth = birthEditText.text.toString().trim()
-            val memo = memoEditText.text.toString().trim()
+            val name = nameText.text.toString().trim()
+            val phone = phoneText.text.toString().trim()
+            val email = emailText.text.toString().trim()
+            val birth = birthText.text.toString().trim()
+            val memo = memoText.text.toString().trim()
 
-            val gender = when (genderRadioGroup.checkedRadioButtonId) {
-                R.id.femaleRadioButton -> "여성"
-                R.id.maleRadioButton -> "남성"
-                else -> ""
-            }
-
-            if (name.isEmpty() || phone.isEmpty()) {
-                Toast.makeText(this, "이름과 전화번호는 필수 값입니다", Toast.LENGTH_SHORT).show()
+            //이름 or 전화번호 미 입력 시 저장 불가
+            if(name.isEmpty() || phone.isEmpty()){
+                Toast.makeText(this, "이름과 전화번호는 필수 입력 값입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // 여기에 저장 로직 추가
+            //성별 선택
+            val gender = if (genderRadio.checkedRadioButtonId == R.id.femaleButton) {
+                "여성"
+            } else {
+                "남성"
+            }
 
-            Toast.makeText(this, "저장이 완료되었습니다", Toast.LENGTH_SHORT).show()
-            //clearFields()
+            Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    //더보기 토글 기능 - 표시 및 숨기기
+    private fun toggleMore(){
+        val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
+        val moreText = findViewById<TextView>(R.id.moreText)
+
+        if(moreLayout.visibility == LinearLayout.GONE){
+            moreLayout.visibility = LinearLayout.VISIBLE
+            moreText.visibility = TextView.GONE
+        }
+        else {
+            moreLayout.visibility = LinearLayout.GONE
+            moreText.visibility = TextView.VISIBLE
         }
     }
 
@@ -67,12 +81,12 @@ class MainActivity : AppCompatActivity() {
         val calendar = Calendar.getInstance()
         val datePicker = DatePickerDialog(
             this,
-            { _, year, month, dayOfMonth ->
+            { _, year, month, day ->
                 val selectedDate = Calendar.getInstance()
-                selectedDate.set(year, month, dayOfMonth)
-                val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
-                val formattedDate = sdf.format(selectedDate.time)
-                findViewById<TextView>(R.id.birthTextView).text = formattedDate // 이 부분 수정
+                selectedDate.set(year, month, day)
+                val setting = SimpleDateFormat("yyyy.mm.dd", Locale.getDefault())
+                val formDate = setting.format(selectedDate.time)
+                findViewById<TextView>(R.id.birthText).text = formDate
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -80,28 +94,4 @@ class MainActivity : AppCompatActivity() {
         )
         datePicker.show()
     }
-
-    private fun toggleMore() {
-        val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
-        val moreTextView = findViewById<TextView>(R.id.moreTextView)
-
-        if (moreLayout.visibility == LinearLayout.GONE) {
-            moreLayout.visibility = LinearLayout.VISIBLE
-            moreTextView.visibility = TextView.GONE
-        } else {
-            moreLayout.visibility = LinearLayout.GONE
-            moreTextView.visibility = TextView.VISIBLE
-        }
-    }
-
-    /*private fun clearFields() {
-        findViewById<EditText>(R.id.nameEditText).text.clear()
-        findViewById<EditText>(R.id.phoneEditText).text.clear()
-        findViewById<EditText>(R.id.emailEditText).text.clear()
-        findViewById<EditText>(R.id.birthTextView).text.clear()
-        findViewById<EditText>(R.id.memoEditText).text.clear()
-        findViewById<RadioGroup>(R.id.genderRadioGroup).clearCheck()
-        findViewById<LinearLayout>(R.id.moreLayout).visibility = LinearLayout.GONE
-        findViewById<TextView>(R.id.moreTextView).visibility = TextView.VISIBLE
-    }*/
 }

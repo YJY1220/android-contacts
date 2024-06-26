@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--모양 지정 시 selector는 case by case. shape로 지정-->
     <solid android:color="#ADD8E6" />
     <corners android:radius="16dp" />
     <padding
