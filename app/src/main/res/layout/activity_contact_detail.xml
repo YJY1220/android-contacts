@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactDetailActivity">
+
+    <TextView
+        android:id="@+id/detailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이름"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/detailPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전화번호"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailName"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/detailEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailPhone"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/detailBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생일"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailEmail"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/detailGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성별"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailBirth"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/detailMemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메모"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailGender"
+        android:padding="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,17 @@
 package campus.tech.kakao.contacts
 
+import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.app.DatePickerDialog //날짜 선택
-import java.text.SimpleDateFormat // 날짜 형식 지정
-import java.util.*
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private val contacts = mutableListOf<Contact>()
+    private lateinit var adapter: ContactAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,25 +21,27 @@ class MainActivity : AppCompatActivity() {
         val emailText = findViewById<EditText>(R.id.emailText)
         val birthText = findViewById<TextView>(R.id.birthText)
         val memoText = findViewById<EditText>(R.id.memoText)
-        val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
         val moreText = findViewById<TextView>(R.id.moreText)
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         val saveButton = findViewById<Button>(R.id.saveButton)
         val genderRadio = findViewById<RadioGroup>(R.id.genderRadio)
         val femaleButton = findViewById<RadioButton>(R.id.femaleButton)
         val maleButton = findViewById<RadioButton>(R.id.maleButton)
+        val listView = findViewById<ListView>(R.id.listView)
 
-        //호출
-        moreText.setOnClickListener{
+        adapter = ContactAdapter(this, contacts)
+        listView.adapter = adapter
+
+        moreText.setOnClickListener {
             toggleMore()
         }
 
-        birthText.setOnClickListener{
+        birthText.setOnClickListener {
             showDatePicker()
         }
 
         cancelButton.setOnClickListener {
-            Toast.makeText(this,"취소되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "취소되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
         saveButton.setOnClickListener {
@@ -45,33 +51,38 @@ class MainActivity : AppCompatActivity() {
             val birth = birthText.text.toString().trim()
             val memo = memoText.text.toString().trim()
 
-            //이름 or 전화번호 미 입력 시 저장 불가
-            if(name.isEmpty() || phone.isEmpty()){
+            if (name.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "이름과 전화번호는 필수 입력 값입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            //성별 선택
             val gender = if (genderRadio.checkedRadioButtonId == R.id.femaleButton) {
                 "여성"
             } else {
                 "남성"
             }
 
+            val contact = Contact(name, phone, email, birth, gender, memo)
+            contacts.add(contact)
+            adapter.notifyDataSetChanged()
+
             Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val contact = contacts[position]
+            showContactDetails(contact)
         }
     }
 
-    //더보기 토글 기능 - 표시 및 숨기기
-    private fun toggleMore(){
+    private fun toggleMore() {
         val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
         val moreText = findViewById<TextView>(R.id.moreText)
 
-        if(moreLayout.visibility == LinearLayout.GONE){
+        if (moreLayout.visibility == LinearLayout.GONE) {
             moreLayout.visibility = LinearLayout.VISIBLE
             moreText.visibility = TextView.GONE
-        }
-        else {
+        } else {
             moreLayout.visibility = LinearLayout.GONE
             moreText.visibility = TextView.VISIBLE
         }
@@ -84,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             { _, year, month, day ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, month, day)
-                val setting = SimpleDateFormat("yyyy.mm.dd", Locale.getDefault())
+                val setting = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
                 val formDate = setting.format(selectedDate.time)
                 findViewById<TextView>(R.id.birthText).text = formDate
             },
@@ -93,5 +104,12 @@ class MainActivity : AppCompatActivity() {
             calendar.get(Calendar.DAY_OF_MONTH)
         )
         datePicker.show()
+    }
+
+    private fun showContactDetails(contact: Contact) {
+        val intent = Intent(this, ContactDetailActivity::class.java).apply {
+            putExtra("contact", contact)
+        }
+        startActivity(intent)
     }
 }
