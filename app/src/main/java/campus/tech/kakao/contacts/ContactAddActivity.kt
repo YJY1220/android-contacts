@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddContactActivity : AppCompatActivity() {
+class ContactAddActivity : AppCompatActivity() {
     private lateinit var nameText: EditText
     private lateinit var phoneText: EditText
     private lateinit var emailText: EditText
@@ -22,7 +22,7 @@ class AddContactActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_contact)
+        setContentView(R.layout.contact_add)
 
         nameText = findViewById(R.id.nameText)
         phoneText = findViewById(R.id.phoneText)

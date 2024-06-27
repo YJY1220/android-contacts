@@ -27,20 +27,24 @@ class MainActivity : AppCompatActivity() {
         //Recyclerview에 LinearLayoutManager로 수직으로 배열 - 스크롤 가능하도록 조회 목록 형식으로 만들어야 하기 때문
         //또한, 연락처 항목 클릭 시 세부 정보 보여주는 화면(detail)으로 전환하는 기능
         contactsRecyclerView.layoutManager = LinearLayoutManager(this)
-        contactsRecyclerView.adapter = ContactsAdapter(contactsList) {  //adapter를 설정해서 list관리함 - 뷰 바인딩
-            contact ->
-            val intent = Intent(this, ContactDetailActivity::class.java)
-            /*클릭된 연락처 객체(content)를 intent에 담아서 contact detail activity로 전달함 */
-            intent.putExtra("contact", contact)
-            startActivity(intent) //intent로 담아서 전달
-        }
+        contactsRecyclerView.adapter =
+            ContactsAdapter(contactsList) {  //adapter를 설정해서 list관리함 - 뷰 바인딩
+                    contact ->
+                val intent = Intent(this, ContactDetailActivity::class.java)
+                /*클릭된 연락처 객체(content)를 intent에 담아서 contact detail activity로 전달함 */
+                intent.putExtra("contact", contact)
+                startActivity(intent) //intent로 담아서 전달
+            }
 
         //연락처 추가 버튼 click listner
         //floatingactioinbutton 눌렀을 때 수행 작업 정의 클릭 리스터
         addContactButton.setOnClickListener {
             //새로운 intent 객체 생성 - intent : 애플리케이션 구성 요소 간 작업 수행 - 다른 액티비티 시작 및 전달
             //this - context : 여기선 mainactivity의 context
-            val intent = Intent(this, AddContactActivity::class.java) //addcontactactivity 클래스의 'class' 객체 - 즉 입력한 정보들 담은 class
+            val intent = Intent(
+                this,
+                ContactAddActivity::class.java
+            ) //addcontactactivity 클래스의 'class' 객체 - 즉 입력한 정보들 담은 class
             startActivityForResult(intent, REQUEST_CODE_ADD_CONTACT) //add 후 결과 받기
             //startActivityForResult - 새 activity 시작 후 그 activity 종료되면 결과 받음
             //REQUEST_CODE_ADD_CONTACT : 결과 구분 위한 요청 코드 - 상수임
@@ -78,3 +82,4 @@ class MainActivity : AppCompatActivity() {
         const val REQUEST_CODE_ADD_CONTACT = 1 //1로 요청하는 것 - 구별
     }
 }
+

@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/profileImageView"
+        android:id="@+id/profileView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
@@ -19,17 +19,17 @@
         android:src="@drawable/profile_image" />
 
     <TextView
-        android:id="@+id/nameLabelTextView"
+        android:id="@+id/nameLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이름"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView"
+        app:layout_constraintTop_toBottomOf="@+id/profileView"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp" />
 
     <TextView
-        android:id="@+id/nameTextView"
+        android:id="@+id/nameView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="이름"
@@ -37,21 +37,21 @@
         android:gravity="end"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nameLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/nameLabelTextView" />
+        app:layout_constraintStart_toEndOf="@+id/nameLabelText"
+        app:layout_constraintTop_toTopOf="@+id/nameLabelText" />
 
     <TextView
-        android:id="@+id/phoneLabelTextView"
+        android:id="@+id/phoneLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="전화번호"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/nameLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nameLabelText"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/phoneTextView"
+        android:id="@+id/phoneView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="전화번호"
@@ -59,21 +59,21 @@
         android:gravity="end"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/phoneLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/phoneLabelTextView" />
+        app:layout_constraintStart_toEndOf="@+id/phoneLabelText"
+        app:layout_constraintTop_toTopOf="@+id/phoneLabelText" />
 
     <TextView
-        android:id="@+id/emailLabelTextView"
+        android:id="@+id/emailLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이메일"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/phoneLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/phoneLabelText"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/emailTextView"
+        android:id="@+id/emailView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="이메일"
@@ -81,21 +81,21 @@
         android:gravity="end"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/emailLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/emailLabelTextView" />
+        app:layout_constraintStart_toEndOf="@+id/emailLabelText"
+        app:layout_constraintTop_toTopOf="@+id/emailLabelText" />
 
     <TextView
-        android:id="@+id/birthLabelTextView"
+        android:id="@+id/birthLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="생일"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/emailLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/emailLabelText"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/birthTextView"
+        android:id="@+id/birthView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="생일"
@@ -103,21 +103,21 @@
         android:gravity="end"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/birthLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/birthLabelTextView" />
+        app:layout_constraintStart_toEndOf="@+id/birthLabelText"
+        app:layout_constraintTop_toTopOf="@+id/birthLabelText" />
 
     <TextView
-        android:id="@+id/genderLabelTextView"
+        android:id="@+id/genderLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="성별"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/birthLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/birthLabelText"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/genderTextView"
+        android:id="@+id/genderView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="성별"
@@ -125,21 +125,21 @@
         android:gravity="end"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/genderLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/genderLabelTextView" />
+        app:layout_constraintStart_toEndOf="@+id/genderLabelText"
+        app:layout_constraintTop_toTopOf="@+id/genderLabelText" />
 
     <TextView
-        android:id="@+id/memoLabelTextView"
+        android:id="@+id/memoLabelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="메모"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/genderLabelTextView"
+        app:layout_constraintTop_toBottomOf="@+id/genderLabelText"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/memoTextView"
+        android:id="@+id/memoView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="메모"
@@ -147,7 +147,7 @@
         android:gravity="end"
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/memoLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/memoLabelTextView" />
+        app:layout_constraintStart_toEndOf="@+id/memoLabelText"
+        app:layout_constraintTop_toTopOf="@+id/memoLabelText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,54 +8,59 @@ import android.widget.TextView
 class ContactDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contact_detail)
+        setContentView(R.layout.contact_detail)
 
-        val profileImageView = findViewById<ImageView>(R.id.profileImageView)
-        val nameTextView = findViewById<TextView>(R.id.nameTextView)
-        val phoneTextView = findViewById<TextView>(R.id.phoneTextView)
-        val emailTextView = findViewById<TextView>(R.id.emailTextView)
-        val birthTextView = findViewById<TextView>(R.id.birthTextView)
-        val genderTextView = findViewById<TextView>(R.id.genderTextView)
-        val memoTextView = findViewById<TextView>(R.id.memoTextView)
+        //view 초기화 보는 거
+        val profileView = findViewById<ImageView>(R.id.profileView)
+        val nameView = findViewById<TextView>(R.id.nameView)
+        val phoneView = findViewById<TextView>(R.id.phoneView)
+        val emailView = findViewById<TextView>(R.id.emailView)
+        val birthView = findViewById<TextView>(R.id.birthView)
+        val genderView = findViewById<TextView>(R.id.genderView)
+        val memoView = findViewById<TextView>(R.id.memoView)
 
-        val nameLabelTextView = findViewById<TextView>(R.id.nameLabelTextView)
-        val phoneLabelTextView = findViewById<TextView>(R.id.phoneLabelTextView)
-        val emailLabelTextView = findViewById<TextView>(R.id.emailLabelTextView)
-        val birthLabelTextView = findViewById<TextView>(R.id.birthLabelTextView)
-        val genderLabelTextView = findViewById<TextView>(R.id.genderLabelTextView)
-        val memoLabelTextView = findViewById<TextView>(R.id.memoLabelTextView)
+        val nameLabelText = findViewById<TextView>(R.id.nameLabelText)
+        val phoneLabelText = findViewById<TextView>(R.id.phoneLabelText)
+        val emailLabelText = findViewById<TextView>(R.id.emailLabelText)
+        val birthLabelText = findViewById<TextView>(R.id.birthLabelText)
+        val genderLabelText = findViewById<TextView>(R.id.genderLabelText)
+        val memoLabelText = findViewById<TextView>(R.id.memoLabelText)
 
+        //parcel에 적어서 intent로 전달된 contact 객체 가져오기
         val contact = intent.getParcelableExtra<Contact>("contact")
 
-        contact?.let {
-            nameTextView.text = it.name
-            phoneTextView.text = it.phone
+        //연락처 정보 설정하기
+        contact?.let { //전달받은 객체가 null이 아니면 실행 코드르 람다함수로 전달할 수 있음
+            //즉 전달받은 contact 객체 !=0 이면 실행
+            //it은 contact임
+            nameView.text = it.name //정보 할당
+            phoneView.text = it.phone
             if (!it.email.isNullOrEmpty()) {
-                emailTextView.text = it.email
-            } else {
-                emailTextView.visibility = TextView.GONE
-                emailLabelTextView.visibility = TextView.GONE
+                emailView.text = it.email //있으면 핟랑
+            } else { //없으면
+                emailView.visibility = TextView.GONE //view도 없앰
+                emailLabelText.visibility = TextView.GONE //text도 없앰
             }
 
             if (!it.birth.isNullOrEmpty()) {
-                birthTextView.text = it.birth
+                birthView.text = it.birth
             } else {
-                birthTextView.visibility = TextView.GONE
-                birthLabelTextView.visibility = TextView.GONE
+                birthView.visibility = TextView.GONE
+                birthLabelText.visibility = TextView.GONE
             }
 
             if (!it.gender.isNullOrEmpty()) {
-                genderTextView.text = it.gender
+                genderView.text = it.gender
             } else {
-                genderTextView.visibility = TextView.GONE
-                genderLabelTextView.visibility = TextView.GONE
+                genderView.visibility = TextView.GONE
+                genderLabelText.visibility = TextView.GONE
             }
 
             if (!it.memo.isNullOrEmpty()) {
-                memoTextView.text = it.memo
+                memoView.text = it.memo
             } else {
-                memoTextView.visibility = TextView.GONE
-                memoLabelTextView.visibility = TextView.GONE
+                memoView.visibility = TextView.GONE
+                memoLabelText.visibility = TextView.GONE
             }
         }
     }
