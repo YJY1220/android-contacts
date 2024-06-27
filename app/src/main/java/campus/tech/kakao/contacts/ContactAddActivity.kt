@@ -35,6 +35,7 @@ class ContactAddActivity : AppCompatActivity() {
         cancelButton = findViewById(R.id.cancelButton)
         saveButton = findViewById(R.id.saveButton)
 
+        //호출
         moreText.setOnClickListener {
             toggleMore()
         }
@@ -44,6 +45,7 @@ class ContactAddActivity : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
+            Toast.makeText(this,"취소되었습니다.", Toast.LENGTH_SHORT).show()
             finish()
         }
 
@@ -54,6 +56,7 @@ class ContactAddActivity : AppCompatActivity() {
             val birth = birthText.text.toString().trim()
             val memo = memoText.text.toString().trim()
 
+            //이름, 전화번호 미 입력 시 저장 불가
             if (name.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "이름과 전화번호는 필수 입력 값입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -65,26 +68,37 @@ class ContactAddActivity : AppCompatActivity() {
             //} else if (genderRadio.checkedRadioButtonId == R.id.maleButton) {
             //    "남성"
             //}
+
+            //성별 선택
             val gender = when (genderRadio.checkedRadioButtonId) {
                 R.id.femaleButton -> "여성"
                 R.id.maleButton -> "남성"
                 else -> ""
             }
 
+            //contact 객체 생성
             val contact = Contact(name, phone, email, birth, gender, memo)
 
+            //intent로 결과 반환
             val resultIntent = Intent()
             resultIntent.putExtra("contact", contact)
             setResult(RESULT_OK, resultIntent)
+
+            Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show()
             finish()
         }
     }
 
-    private fun toggleMore() {
-        if (moreLayout.visibility == LinearLayout.GONE) {
+    //더보기 토글 기능 - 표시 및 숨기기
+    private fun toggleMore(){
+        val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
+        val moreText = findViewById<TextView>(R.id.moreText)
+
+        if(moreLayout.visibility == LinearLayout.GONE){
             moreLayout.visibility = LinearLayout.VISIBLE
             moreText.visibility = TextView.GONE
-        } else {
+        }
+        else {
             moreLayout.visibility = LinearLayout.GONE
             moreText.visibility = TextView.VISIBLE
         }
@@ -97,9 +111,9 @@ class ContactAddActivity : AppCompatActivity() {
             { _, year, month, day ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, month, day)
-                val setting = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+                val setting = SimpleDateFormat("yyyy.mm.dd", Locale.getDefault())
                 val formDate = setting.format(selectedDate.time)
-                birthText.text = formDate
+                findViewById<TextView>(R.id.birthText).text = formDate
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -108,3 +122,5 @@ class ContactAddActivity : AppCompatActivity() {
         datePicker.show()
     }
 }
+
+
