@@ -2,7 +2,8 @@ package campus.tech.kakao.contacts
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 
 class ContactDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,15 +18,45 @@ class ContactDetailActivity : AppCompatActivity() {
         val genderTextView = findViewById<TextView>(R.id.genderTextView)
         val memoTextView = findViewById<TextView>(R.id.memoTextView)
 
+        val nameLabelTextView = findViewById<TextView>(R.id.nameLabelTextView)
+        val phoneLabelTextView = findViewById<TextView>(R.id.phoneLabelTextView)
+        val emailLabelTextView = findViewById<TextView>(R.id.emailLabelTextView)
+        val birthLabelTextView = findViewById<TextView>(R.id.birthLabelTextView)
+        val genderLabelTextView = findViewById<TextView>(R.id.genderLabelTextView)
+        val memoLabelTextView = findViewById<TextView>(R.id.memoLabelTextView)
+
         val contact = intent.getParcelableExtra<Contact>("contact")
 
         contact?.let {
-            nameTextView.text = "이름: ${it.name}"
-            phoneTextView.text = "전화번호: ${it.phone}"
-            emailTextView.text = "이메일: ${it.email}"
-            birthTextView.text = "생일: ${it.birth}"
-            genderTextView.text = "성별: ${it.gender}"
-            memoTextView.text = "메모: ${it.memo}"
+            nameTextView.text = it.name
+            phoneTextView.text = it.phone
+            if (!it.email.isNullOrEmpty()) {
+                emailTextView.text = it.email
+            } else {
+                emailTextView.visibility = TextView.GONE
+                emailLabelTextView.visibility = TextView.GONE
+            }
+
+            if (!it.birth.isNullOrEmpty()) {
+                birthTextView.text = it.birth
+            } else {
+                birthTextView.visibility = TextView.GONE
+                birthLabelTextView.visibility = TextView.GONE
+            }
+
+            if (!it.gender.isNullOrEmpty()) {
+                genderTextView.text = it.gender
+            } else {
+                genderTextView.visibility = TextView.GONE
+                genderLabelTextView.visibility = TextView.GONE
+            }
+
+            if (!it.memo.isNullOrEmpty()) {
+                memoTextView.text = it.memo
+            } else {
+                memoTextView.visibility = TextView.GONE
+                memoLabelTextView.visibility = TextView.GONE
+            }
         }
     }
 }

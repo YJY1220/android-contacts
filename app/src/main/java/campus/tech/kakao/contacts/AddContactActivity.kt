@@ -59,10 +59,15 @@ class AddContactActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val gender = if (genderRadio.checkedRadioButtonId == R.id.femaleButton) {
-                "여성"
-            } else {
-                "남성"
+            //val gender = if (genderRadio.checkedRadioButtonId == R.id.femaleButton) {
+            //    "여성"
+            //} else if (genderRadio.checkedRadioButtonId == R.id.maleButton) {
+            //    "남성"
+            //}
+            val gender = when (genderRadio.checkedRadioButtonId) {
+                R.id.femaleButton -> "여성"
+                R.id.maleButton -> "남성"
+                else -> ""
             }
 
             val contact = Contact(name, phone, email, birth, gender, memo)
