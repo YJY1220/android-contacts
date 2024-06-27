@@ -59,6 +59,7 @@ class AddContactActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            //성별 선택을 하지 않는 경우 아무것도 안떠야함 - "" 경우가 있어야 함
             //val gender = if (genderRadio.checkedRadioButtonId == R.id.femaleButton) {
             //    "여성"
             //} else if (genderRadio.checkedRadioButtonId == R.id.maleButton) {
