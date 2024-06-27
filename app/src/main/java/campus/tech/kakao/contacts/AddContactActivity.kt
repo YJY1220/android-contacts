@@ -77,8 +77,10 @@ class AddContactActivity : AppCompatActivity() {
     private fun toggleMore() {
         if (moreLayout.visibility == LinearLayout.GONE) {
             moreLayout.visibility = LinearLayout.VISIBLE
+            moreText.visibility = TextView.GONE
         } else {
             moreLayout.visibility = LinearLayout.GONE
+            moreText.visibility = TextView.VISIBLE
         }
     }
 

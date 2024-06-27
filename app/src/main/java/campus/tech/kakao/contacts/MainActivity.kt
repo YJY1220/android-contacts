@@ -62,4 +62,3 @@ class MainActivity : AppCompatActivity() {
         const val REQUEST_CODE_ADD_CONTACT = 1
     }
 }
-

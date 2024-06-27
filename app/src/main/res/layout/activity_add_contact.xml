@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AddContactActivity">
 
-    <!--profile image-->
+    <!-- profile image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="80dp"
@@ -16,9 +16,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/profile_image"/>
+        android:src="@drawable/profile_image" />
 
-    <!--input name-->
+    <!-- input name -->
     <EditText
         android:id="@+id/nameText"
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
         android:padding="10dp"
         android:background="@drawable/round_background" />
 
-    <!--input number-->
+    <!-- input number -->
     <EditText
         android:id="@+id/phoneText"
         android:layout_width="0dp"
@@ -44,11 +44,11 @@
         app:layout_constraintTop_toBottomOf="@+id/nameText"
         android:inputType="phone"
         android:padding="10dp"
-        android:background="@drawable/round_background"/>
+        android:background="@drawable/round_background" />
 
-    <!--input email-->
+    <!-- input email -->
     <EditText
-        android:id = "@+id/emailText"
+        android:id="@+id/emailText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="이메일"
@@ -60,7 +60,7 @@
         android:padding="10dp"
         android:background="@drawable/round_background" />
 
-    <!--더보기-->
+    <!-- 더보기 -->
     <TextView
         android:id="@+id/moreText"
         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/emailText"
         android:onClick="toggleMore" />
 
-    <!--더보기 아래 생일, 성별, 메모 레이아웃 묶기-->
+    <!-- 더보기 아래 생일, 성별, 메모 레이아웃 묶기 -->
     <LinearLayout
         android:id="@+id/moreLayout"
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/moreText">
 
-        <!--birth calendar-->
+        <!-- birth calendar -->
         <TextView
             android:id="@+id/birthText"
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
             android:background="@drawable/round_background"
             android:onClick="showDatePicker" />
 
-        <!--choose gender layout-->
+        <!-- choose gender layout -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,43 +105,41 @@
             android:padding="10dp"
             android:gravity="end"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:background="@drawable/round_background">
 
-            <!--choose gender text-->
+            <!-- choose gender text -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="성별"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10dp"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical" />
 
-            <!--real choose gender - radio-->
+            <!-- real choose gender - radio -->
             <RadioGroup
                 android:id="@+id/genderRadio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!--female radio-->
+                <!-- female radio -->
                 <RadioButton
                     android:id="@+id/femaleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="여성"/>
+                    android:text="여성" />
 
-                <!--male radio-->
+                <!-- male radio -->
                 <RadioButton
                     android:id="@+id/maleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="남성"/>
+                    android:text="남성" />
             </RadioGroup>
         </LinearLayout>
 
-        <!--input memo-->
+        <!-- input memo -->
         <EditText
             android:id="@+id/memoText"
             android:layout_width="match_parent"
@@ -153,7 +151,7 @@
             android:background="@drawable/round_background" />
     </LinearLayout>
 
-    <!--ButtonLayout-->
+    <!-- ButtonLayout -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -162,7 +160,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!--Cancel Button-->
+        <!-- Cancel Button -->
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="0dp"
@@ -171,9 +169,9 @@
             android:text="취소"
             android:textColor="@android:color/white"
             android:layout_margin="8dp"
-            android:background="@drawable/round_background"/>
+            android:background="@drawable/round_background" />
 
-        <!--Store Button-->
+        <!-- Store Button -->
         <Button
             android:id="@+id/saveButton"
             android:layout_width="0dp"
@@ -182,7 +180,7 @@
             android:text="저장"
             android:textColor="@android:color/white"
             android:layout_margin="8dp"
-            android:background="@drawable/round_background"/>
+            android:background="@drawable/round_background" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
