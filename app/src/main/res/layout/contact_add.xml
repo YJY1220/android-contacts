@@ -109,19 +109,25 @@
 
             <!-- choose gender text -->
             <TextView
+                android:id="@+id/genderText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="성별"
                 android:textColor="@android:color/darker_gray"
                 android:padding="10dp"
-                android:layout_gravity="center_vertical" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/genderRadio"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <!-- real choose gender - radio -->
             <RadioGroup
                 android:id="@+id/genderRadio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                app:layout_constraintStart_toEndOf="@id/genderText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <!-- female radio -->
                 <RadioButton
