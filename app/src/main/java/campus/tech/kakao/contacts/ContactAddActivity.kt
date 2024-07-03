@@ -114,7 +114,7 @@ class ContactAddActivity : AppCompatActivity() {
                 selectedDate.set(year, month, day)
                 val setting = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
                 val formDate = setting.format(selectedDate.time)
-                findViewById<TextView>(R.id.birthText).text = formDate
+                birthText.text = formDate
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
