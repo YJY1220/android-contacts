@@ -9,22 +9,35 @@ import android.widget.*
 import android.content.Intent
 
 class ContactAddActivity : AppCompatActivity() {
+
+    private lateinit var nameText: EditText
+    private lateinit var phoneText: EditText
+    private lateinit var emailText: EditText
+    private lateinit var birthText: TextView
+    private lateinit var memoText: EditText
+    private lateinit var moreLayout: LinearLayout
+    private lateinit var moreText: TextView
+    private lateinit var cancelButton: Button
+    private lateinit var saveButton: Button
+    private lateinit var genderRadio: RadioGroup
+    private lateinit var femaleButton: RadioButton
+    private lateinit var maleButton: RadioButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contact_add)
 
-        val nameText = findViewById<EditText>(R.id.nameText)
-        val phoneText = findViewById<EditText>(R.id.phoneText)
-        val emailText = findViewById<EditText>(R.id.emailText)
-        val birthText = findViewById<TextView>(R.id.birthText)
-        val memoText = findViewById<EditText>(R.id.memoText)
-        val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
-        val moreText = findViewById<TextView>(R.id.moreText)
-        val cancelButton = findViewById<Button>(R.id.cancelButton)
-        val saveButton = findViewById<Button>(R.id.saveButton)
-        val genderRadio = findViewById<RadioGroup>(R.id.genderRadio)
-        val femaleButton = findViewById<RadioButton>(R.id.femaleButton)
-        val maleButton = findViewById<RadioButton>(R.id.maleButton)
+        nameText = findViewById(R.id.nameText)
+        phoneText = findViewById(R.id.phoneText)
+        emailText = findViewById(R.id.emailText)
+        birthText = findViewById(R.id.birthText)
+        memoText = findViewById(R.id.memoText)
+        moreLayout = findViewById(R.id.moreLayout)
+        moreText = findViewById(R.id.moreText)
+        cancelButton = findViewById(R.id.cancelButton)
+        saveButton = findViewById(R.id.saveButton)
+        genderRadio = findViewById(R.id.genderRadio)
+        femaleButton = findViewById(R.id.femaleButton)
+        maleButton = findViewById(R.id.maleButton)
 
         //호출
         moreText.setOnClickListener{
@@ -36,7 +49,7 @@ class ContactAddActivity : AppCompatActivity() {
         }
 
         cancelButton.setOnClickListener {
-            Toast.makeText(this,"취소되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.cancel_message), Toast.LENGTH_SHORT).show()
             finish() //main 화면으로 돌아가기
         }
 
@@ -49,7 +62,7 @@ class ContactAddActivity : AppCompatActivity() {
 
             //이름 or 전화번호 미 입력 시 저장 불가
             if(name.isEmpty() || phone.isEmpty()){
-                Toast.makeText(this, "이름과 전화번호는 필수 입력 값입니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.notice_message), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -69,7 +82,7 @@ class ContactAddActivity : AppCompatActivity() {
             resultIntent.putExtra("contact", contact)
             setResult(RESULT_OK, resultIntent)
 
-            Toast.makeText(this, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.save_message), Toast.LENGTH_SHORT).show()
             finish()
         }
     }
