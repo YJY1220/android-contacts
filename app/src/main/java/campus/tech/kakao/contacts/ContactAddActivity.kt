@@ -26,18 +26,7 @@ class ContactAddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contact_add)
 
-        nameText = findViewById(R.id.nameText)
-        phoneText = findViewById(R.id.phoneText)
-        emailText = findViewById(R.id.emailText)
-        birthText = findViewById(R.id.birthText)
-        memoText = findViewById(R.id.memoText)
-        moreLayout = findViewById(R.id.moreLayout)
-        moreText = findViewById(R.id.moreText)
-        cancelButton = findViewById(R.id.cancelButton)
-        saveButton = findViewById(R.id.saveButton)
-        genderRadio = findViewById(R.id.genderRadio)
-        femaleButton = findViewById(R.id.femaleButton)
-        maleButton = findViewById(R.id.maleButton)
+        initialViews()
 
         //호출
         moreText.setOnClickListener{
@@ -87,6 +76,20 @@ class ContactAddActivity : AppCompatActivity() {
         }
     }
 
+    private fun initialViews(){
+        nameText = findViewById(R.id.nameText)
+        phoneText = findViewById(R.id.phoneText)
+        emailText = findViewById(R.id.emailText)
+        birthText = findViewById(R.id.birthText)
+        memoText = findViewById(R.id.memoText)
+        moreLayout = findViewById(R.id.moreLayout)
+        moreText = findViewById(R.id.moreText)
+        cancelButton = findViewById(R.id.cancelButton)
+        saveButton = findViewById(R.id.saveButton)
+        genderRadio = findViewById(R.id.genderRadio)
+        femaleButton = findViewById(R.id.femaleButton)
+        maleButton = findViewById(R.id.maleButton)
+    }
     //더보기 토글 기능 - 표시 및 숨기기
     private fun toggleMore(){
         val moreLayout = findViewById<LinearLayout>(R.id.moreLayout)
