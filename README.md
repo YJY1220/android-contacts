@@ -91,4 +91,4 @@ app
 <img src="https://github.com/YJY1220/Programmers_prac/assets/93771689/fcc10402-f863-4a88-9b59-f36be7779d0e" width="200" height="400"/>
 
 ### 실행 영상 (전체 실행영상)
-[https://youtu.be/re7rHcPNlhE](https://youtu.be/S2kDtQot_4Y)
+[[https://youtu.be/re7rHcPNlhE](https://youtu.be/S2kDtQot_4Y)](https://youtu.be/UEXYAcABTMc)
